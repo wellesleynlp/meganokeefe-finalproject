@@ -2,7 +2,7 @@
 #last update: 3/21
 
 import rake_test
-import requests
+import genius
 
 #THE INPUT TEXT
 filename = 'carroll-alice.txt' #(this will be an arg)
@@ -18,9 +18,14 @@ print "\nTOP KEYWORDS FOR", filename, ": ", tk, "\n"
 #(another tool to look at - Topia TermExtract )
 
 #STEP 2: QUERY GENIUS FOR EACH KEYWORD -> SET OF CANDIDATE SONGS + LYRICS
-request = "https://api.genius.com/oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&scope=REQUESTED_SCOPE&state=SOME_STATE_VALUE&response_type=code"
+#code in genius.py
+print "\nQUERYING GENIUS API.....\n"
+allSongs = []
+for kw in tk:
+    allSongs = allSongs + genius.get_songs(kw)
 
-
+#with open('songsout.txt', 'w') as outfile:
+#    outfile.write(allSongs)
 
 #STEP 3: FOR EACH SONG COMPUTE CROSS-ENTROPY BETWEEN INITIAL TEXT
 
