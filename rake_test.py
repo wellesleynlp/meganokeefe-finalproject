@@ -5,7 +5,7 @@
 import rake
 import operator
 
-def getKeywords(filename):
+def get_keywords(filename):
     #Rake uses modifiable parameters
     rake_object = rake.Rake("SmartStoplist.txt", 5, 3, 4)
     #each word has at least 5 chars; each phrase has at most 3 words, each keyword appears at least 4x.

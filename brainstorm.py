@@ -24,9 +24,6 @@ allSongs = []
 for kw in tk:
     allSongs = allSongs + genius.get_songs(kw)
 
-#with open('songsout.txt', 'w') as outfile:
-#    outfile.write(allSongs)
-
 #STEP 3: FOR EACH SONG COMPUTE CROSS-ENTROPY BETWEEN INITIAL TEXT
 
 #STEP 4: RETURN THE TOP 8 SONGS

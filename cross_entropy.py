@@ -9,7 +9,8 @@ filename = "carroll-alice.txt"
 
 corpus = Corpus(filename, casefold=True)
 
-wordmodel = NGram(2, 'word', 0.8, openvocab=False)
+#for now, using unigrams. one song has few words!
+wordmodel = NGram(1, 'word', 0.8, openvocab=False)
 ts = corpus.tokenized_sents
 wordmodel.estimate_from_text(ts)
 
