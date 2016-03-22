@@ -4,11 +4,11 @@
 import rake_test
 import genius
 
-#THE INPUT TEXT
+#1. THE INPUT TEXT
 filename = 'carroll-alice.txt' #(this will be an arg)
 input = open(filename).read()
 
-#STEP 1: EXTRACT A LIST OF KEYWORDS FROM TEXT
+#STEP 2: EXTRACT A LIST OF KEYWORDS FROM TEXT
 allKeywords = rake_test.getKeywords(filename)
 #keywords is a list of tuples. extract the top 25 for now
 topTen = allKeywords[:25]
@@ -17,7 +17,7 @@ print "\nTOP KEYWORDS FOR", filename, ": ", tk, "\n"
 
 #(another tool to look at - Topia TermExtract )
 
-#STEP 2: QUERY GENIUS FOR EACH KEYWORD -> SET OF CANDIDATE SONGS + LYRICS
+#STEP 3: QUERY GENIUS FOR EACH KEYWORD -> SET OF CANDIDATE SONGS + LYRICS
 #code in genius.py
 print "\nQUERYING GENIUS API.....\n"
 allSongs = []
