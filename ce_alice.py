@@ -1,5 +1,6 @@
 #Megan, 3/22
 #practicing skeleton version of last part of algorithm (CE rank of songs on orig. text)
+
 import pprint as pp
 from ngram import *
 from corpus import *
@@ -10,14 +11,14 @@ import ast
 from operator import itemgetter
 
 #this will already have been done earlier
-filename = "carroll-alice.txt"
+filename = "in/carroll-alice.txt"
 corpus = Corpus(filename, casefold=True)
 
 #make a model- for now, using unigrams- one song has few words!
 wordmodel = NGram(1, 'word', 0.8, openvocab=False)
 ts = corpus.tokenized_sents
 wordmodel.estimate_from_text(ts)
-"""
+
 #get keywords
 rawkw = rake_test.get_keywords(filename)[:10]
 keywords = [item[0] for item in rawkw]
@@ -30,10 +31,10 @@ lyricsDict = lyric_scraper.get_lyrics(songs)
 
 #write to file
 with open("aliceLyrics.txt", "w") as outfile:
-    outfile.write(str(lyricsDict))"""
+    outfile.write(str(lyricsDict))
 
 #now get the lyrics and rank cross-entropies
-with open("aliceLyrics.txt") as infile:
+with open("out/aliceLyrics.txt") as infile:
     lyricsDict = ast.literal_eval(infile.read())
 
 all = lyricsDict.items()

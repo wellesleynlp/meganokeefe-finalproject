@@ -1,8 +1,17 @@
 # Bookbeats: Playlist-ify Your Text
 Megan O'Keefe, CS349 (Spring 2016)
 
+##Update, 3/29/16
+Experimenting with different compiled novel datasets, including:
+- (50 books) open source Scifi: https://github.com/alixk/sci_fi
+- (441 books) open source English-language novels: https://github.com/JonathanReeve/cenlab
 
-##"State of the Algorithm" (3/22/16)
+Currently trying to tweak keyword extraction parameters.
+
+Also thinking about how to incorporate randomness into the algorithm- using a random subset of the
+top keywords for API querying, for instance. Or, taking a random subset of the top songs.
+
+##Update, 3/22/16
 
 I have written a command-line skeleton of the algorithm (see ce_alice.py) using a combination of existing tools, class code (ngrams and corpus), the Genius API, and a small web scraper. Now my job is to fill out and improve on each of the steps.
 
