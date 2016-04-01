@@ -1,6 +1,13 @@
 # Bookbeats: Playlist-ify Your Text
 Megan O'Keefe, CS349 (Spring 2016)
 
+##Update, 4/1/16
+Updated stopwords so that my keywords aren't people's names (like "Mr. ___") but I might change this as I go. Have experimented with keyword extraction parameters.
+
+I am so silly- I shouldn't have ever been using Genius to get songs based on keywords, because Genius has annotations for lots of things that aren't songs. This was the problem I was having with getting 'songs' that were actual transcriptions of the input text itself. So I've decided to use the MusixMatch API to get my candidate songs.
+
+Update- Using MusixMatch to get the songs is working a lot better and the queries are also running a lot faster. But the problem is that for lyrics, it only returns 30% of them, meaning that I no longer have a direct link between song information and lyrics. This will be my next task. Hopefully I can find a service that will give me all the lyrics.
+
 ##Update, 3/29/16
 Experimenting with different compiled novel datasets, including:
 - (50 books) open source Scifi: https://github.com/alixk/sci_fi
