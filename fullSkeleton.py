@@ -12,7 +12,10 @@ import genius
 import lyric_scraper
 import operator
 import random
-
+from ngram import *
+from corpus import *
+import ast
+from operator import itemgetter
 
 def main(filepath):
     #Step 1- RAKE. returns a list of keyword phrases from the input text.
@@ -32,23 +35,36 @@ def main(filepath):
     #Step 2 - API step. keywords -> set of song lyrics
     def songLyrics(filepath, keywords):
         rawSongs = musixmatch.get_all_songs(keywords) #musixmatch first
-        print "\n\nRAW SONGS from MUSIXMATCH: ", rawSongs, len(rawSongs)
+        print "\n\nRAW SONGS from MUSIXMATCH: ", len(rawSongs)
 
         songs = genius.get_all_songs(rawSongs)
-        print "\n\nGENIUS GET", songs, len(songs)
+        print "\n\nGENIUS GET", len(songs)
 
         lyricsDict = lyric_scraper.get_lyrics(songs)
-        print "\n\nLYRICS DICT FROM GENIUS:"
+        print "\n\nLYRICS DICT FROM GENIUS..."
         return lyricsDict
 
     #Step 3 - word model step using NGrams
-    def getTopSongs(lyrics):
-        return []
+    def getTopSongs(filepath, lyricsDict):
+        print "\n\nCALCULATING C-E WITH ORIGINAL TEXT..."
+        corpus = Corpus(filepath, casefold=True)
+        wordmodel = NGram(1, 'word', 0.8, openvocab=False)
+        ts = corpus.tokenized_sents
+        wordmodel.estimate_from_text(ts)
+        enum = lyricsDict.items()
+        #song is (id, [title by, lyrics, url])
+        entropies = []
+        for song in enum:
+            lyrics = song[1][1]
+            titleBy = song[1][0]
+            ce = wordmodel.cross_entropy(lyrics.split())
+            entropies.append((titleBy, ce))
+        ranked = sorted(entropies,key=itemgetter(1))
+        return ranked
 
     kws = extractKeywords(filepath)
     lyrics = songLyrics(filepath, kws)
-    return lyrics
-    #return getTopSongs(lyrics)
+    return getTopSongs(filepath, lyrics)
 
 
 if __name__=='__main__':
