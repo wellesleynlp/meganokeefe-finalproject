@@ -8,6 +8,7 @@ from os import listdir
 from os.path import isfile, join
 import rake
 import musixmatch
+import genius
 import lyric_scraper
 import operator
 import random
@@ -30,8 +31,14 @@ def main(filepath):
 
     #Step 2 - API step. keywords -> set of song lyrics
     def songLyrics(filepath, keywords):
-        songs = musixmatch.get_all_songs(keywords)
+        rawSongs = musixmatch.get_all_songs(keywords) #musixmatch first
+        print "\n\nRAW SONGS from MUSIXMATCH: ", rawSongs, len(rawSongs)
+
+        songs = genius.get_all_songs(rawSongs)
+        print "\n\nGENIUS GET", songs, len(songs)
+
         lyricsDict = lyric_scraper.get_lyrics(songs)
+        print "\n\nLYRICS DICT FROM GENIUS:"
         return lyricsDict
 
     #Step 3 - word model step using NGrams
