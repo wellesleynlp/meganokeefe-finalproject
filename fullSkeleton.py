@@ -26,7 +26,7 @@ def main(filepath):
         rake_object = rake.Rake("SmartStoplist.txt", 3, 2, 3)
         #each word has at least _ chars; each phrase has at most _ words, each keyword appears at least _ times.
         keywords = rake_object.run(rawtext)
-        top = keywords[:15]
+        top = keywords[:10]
         #randomSample = [ keywords[i] for i in sorted(random.sample(xrange(len(keywords)), 15)) ]
         #just get the keywords themselves
         output = [item[0] for item in top]
