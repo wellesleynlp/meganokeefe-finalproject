@@ -21,14 +21,11 @@ def main(filepath):
     #Step 1- RAKE. returns a list of keyword phrases from the input text.
     def extractKeywords(filepath):
         rawtext = open(filepath).read()
-        #rawtext = rawtext.decode("string_escape")
-        #rawtext = rawtext.decode('utf-8')
         rake_object = rake.Rake("SmartStoplist.txt", 3, 2, 3)
         #each word has at least _ chars; each phrase has at most _ words, each keyword appears at least _ times.
         keywords = rake_object.run(rawtext)
+        pp.pprint(keywords)
         top = keywords[:10]
-        #randomSample = [ keywords[i] for i in sorted(random.sample(xrange(len(keywords)), 15)) ]
-        #just get the keywords themselves
         output = [item[0] for item in top]
         return output
 

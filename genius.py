@@ -6,16 +6,20 @@ def get_song(kw):
     url = "http://api.genius.com/search?q=" + kw + "&access_token=yAhguhsEC2aduLtKe7C6AwiGJMXVoLvyZIJS1yQMET1ZgzjayNl6gW4lXiEop8gS"
     r = requests.get(url)
     results = r.json()
-    songs = results['response']['hits']
-    songList = [] #list of tuples
-    if len(songs)==0: #no genius hits, too bad.
-        return []
+    if 'response' in results:
+        if 'hits' in results['response']:
+            songs = results['response']['hits']
+            songList = [] #list of tuples
+            if len(songs)==0: #no genius hits, too bad.
+                return []
+            else:
+                song = songs[0] #return the top hit
+                title = song['result']['full_title']
+                ident = song['result']['id']
+                url = song['result']['url']
+                return (title, ident, url)
     else:
-        song = songs[0] #return the top hit
-        title = song['result']['full_title']
-        ident = song['result']['id']
-        url = song['result']['url']
-        return (title, ident, url)
+        return ()
 
 def get_all_songs(kws):
     result = []
