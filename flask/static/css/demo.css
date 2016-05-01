@@ -1,0 +1,25 @@
+body{
+	background-color: #fdfdff;
+	font-family: Courier;
+	font-size: 13pt;
+	padding: 3em;
+}
+
+.input{
+	color: #009900;
+	font-weight: bold;
+}
+
+.output{
+	color: green;
+}
+
+#content{
+	background-color: white;
+	padding: 1em;
+}
+
+#footer{
+	font-size: 10pt;
+	padding-top: 3em;
+}

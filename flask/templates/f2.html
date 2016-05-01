@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+
+{% if results %}
+  <p>Song results:</p>
+  <div>{{ results|safe }}</div>
+{% endif %}
+
+<p>Enter a book title:</p>
+
+<form action = "/" method=post>
+<input type="text" id="word" name="word">
+<datalist id="word">
+  <option name ="Internet Explorer">
+  <option name="Firefox">
+</datalist>
+<input type="submit" value="Generate">
+</form>
+{% endblock %}
