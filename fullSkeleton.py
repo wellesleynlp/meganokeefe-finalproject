@@ -15,6 +15,7 @@ import lyric_scraper
 import operator
 from ngram import *
 from corpus import *
+from similarity import *
 import ast
 from operator import itemgetter
 
@@ -64,7 +65,7 @@ def main(filepath):
         print "\n\nLYRICS DICT FROM GENIUS..."
         return lyricsDict
 
-    #Step 3 - word model step using NGrams
+    #Step 3 - word model step using NGrams (currently not using in final version)
     # def getTopSongs(filepath, lyricsDict):
     #     print "\n\nCALCULATING C-E WITH ORIGINAL TEXT..."
     #     corpus = Corpus(filepath, casefold=True)
@@ -93,8 +94,8 @@ def main(filepath):
     print "ALL KEYWORDS/PROPER NOUNS GATHERED: ", fkws
     print "Lyrics...."
     lyrics = songLyrics(filepath, kws)
-    print "Cross-entropy...."
-    return getTopSongs(filepath, lyrics)
+    print "TFIDF/Cosine Similarity..." 
+    return getRankings(rawtext, lyrics)
 
 
 if __name__=='__main__':

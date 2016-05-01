@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 import pprint as pp
 import os
+import json
 
 #Web scraper for Genius (subverts API)
 def get_lyrics(input, title):
@@ -17,9 +18,12 @@ def get_lyrics(input, title):
         soup = BeautifulSoup(response.text, "lxml")
         lyrics = soup.find('div', class_='song_body-lyrics').text.strip()
         output[s[1]] = [s[0], lyrics, s[2]]
-        #write to txtfile
+        #write all lyrics to txtfiles
         with open(title+"/"+str(count)+".txt", "wb") as outfile:
             outfile.write(lyrics.encode('utf8'))
             outfile.close()
         count = count + 1
+    #json out for testing
+    with open(title+"_lyrics"+'.json', 'wb') as fp:
+        json.dump(output, fp)
     return output
