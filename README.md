@@ -1,6 +1,10 @@
 # Bookbeats: Playlist-ify Your Text
 Megan O'Keefe, CS349 (Spring 2016)
 
+#### Update, 5/1/16
+State of the app: I have integrated the current version of the algorithm with a basic Flask app. 
+Right now, you enter the title of the novel (barring it's one of the ones in the "novels" directory), then the algorithm runs (taking a minute, sometimes more, to finish), then the output songs are displayed on the webpage as Soundcloud embeds. The results are still a little bit lackluster, but it's exciting to have a working site. 
+
 #### Update, 4/27/16 (Proper Nouns and Cosine Similarity)
 Cross-entropy between the novel<->lyrics is not working as well as I'd like, so I've switched to using cosine similarity between documents, where the documents are the song lyrics. 
 
