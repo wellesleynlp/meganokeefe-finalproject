@@ -1,7 +1,44 @@
 # Bookbeats: Playlist-ify Your Text
 Megan O'Keefe, CS349 (Spring 2016)
 
-###Update, 4/6/16 (Milestone 1)
+#### Update, 4/27/16 (Proper Nouns and Cosine Similarity)
+Cross-entropy between the novel<->lyrics is not working as well as I'd like, so I've switched to using cosine similarity between documents, where the documents are the song lyrics. 
+
+I've also added a way to use regular expressions to merge common proper nouns into the keywords (one- and two-word proper noun phrases). I'm still filtering out certain kinds of names (like those starting with "Dr." or "Mr."). But things like place names get to stay intact. I did this to address the relative shortcomings of RAKE as pertains to getting relevant songs. 
+
+	RAKE.....
+	Proper nouns....
+	ALL KEYWORDS/PROPER NOUNS GATHERED:  ['walt whitman', 'young men', 'young man', 'western sea', 'open air', 'Walt Whitman', 'Seaside State', 'Washington City', 'Western Sea', 'Eastern Sea']
+	Lyrics....
+	MusixMatch API query for  walt whitman ...
+	MusixMatch API query for  young men ...
+	MusixMatch API query for  young man ...
+	MusixMatch API query for  western sea ...
+	MusixMatch API query for  open air ...
+	MusixMatch API query for  Walt Whitman ...
+	MusixMatch API query for  Seaside State ...
+	MusixMatch API query for  Washington City ...
+	MusixMatch API query for  Western Sea ...
+	MusixMatch API query for  Eastern Sea ...
+	
+	
+	RAW SONGS from MUSIXMATCH:  99
+	Genius query for  (4724659, u'\xc0s vezes com quem amo', u'Marina Lima')
+	Genius query for  (1696174, u'I Saw the Vision of Armies', u'Joan Baez')
+	Genius query for  (78038147, u'A Supermarket in California', u'Allen Ginsberg')
+	Genius query for  (19847229, u'I Missed Your Party', u'Camera Obscura')
+	Genius query for  (32802932, u'Rave On, John Donne', u'Van Morrison')
+	Genius query for  (1022393, u'Oswald Defence Lawyer', u'The Fall')
+	Genius query for  (17009610, u'Walt Whitman', u'Trampled By Turtles')
+	Genius query for  (6791647, u'Oda a Walt Whitman', u'Patxi Andi\xf3n')
+	Genius query for  (878559, u'Big Road', u'The Jon Spencer Blues Explosion')
+	Genius query for  (1002351, u"The Contents of Lincoln's Pockets", u'Rainer Maria')
+	Genius query for  (1990014, u"Artists' Rifles", u'Piano Magic')
+	Genius query for  (14282179, u'Ballad of the Sad Young Men', u'Jane Monheit')
+	Genius query for  (13331042, u'Ballad of the Sad Young Men', u'Shirley Bassey')
+	Genius query for  (15007093, u'Ballad of the Sad Young Men', u'David Sanborn')
+
+#### Update, 4/6/16 (Milestone 1)
 
 My intended first milestone was to have a working command line version of the algorithm, and I have achieved this. The results are lackluster, but the program runs (given an input text, returns a ranked playlist of songs).
 
