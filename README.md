@@ -1,5 +1,32 @@
-# Bookbeats: Playlist-ify Your Text
-Megan O'Keefe, CS349 (Spring 2016)
+# CS349 Final Project 
+Megan O'Keefe, Spring 2016
+
+![image](bb.jpg)
+
+#### Update, 5/2/16
+The final version of Bookbeats runs on a local flask app, which you can execute if you clone the repository and run ```main.py``` inside the Flask folder. **Note:** before running, must have the following Python modules installed:
+
+1. soundcloud
+2. flask
+3. nltk
+4. numpy
+5. scipy
+6. scikit-learn
+7. requests
+8. beautifulsoup
+
+
+Regarding final algorithm improvements- with the addition of also extracting proper nouns, my keywords are now slightly more comprehensive. Here are the music API queries for *Divergent* (by Veronica Roth): 
+
+	ALL KEYWORDS/PROPER NOUNS GATHERED:  ['fear landscape room', 'visiting day', 'ferris wheel', 'aptitude test', 'dining hall', 'Dauntless', 'Christina', 'Im', 'Abnegation', 'Eric']
+
+For *Emma* by Jane Austen: 
+
+	ALL KEYWORDS/PROPER NOUNS GATHERED:  ['fine young man', 'young man', 'brunswick square', 'william larkins', 'box hill', 'Emma', 'Harriet', 'Jane', 'Fairfax', 'Woodhouse'] 
+	
+The algorithm's shortcomings (like not accounting for genre preferences) are still present, as are the limitations I've put on myself with API queries (using two APIs in turn really slows down the whole algorithm, for example). But I'm happy with how the project has evolved. Writing the algorithm was difficult, as predicted, and there are a lot of moving pieces- I could probably work on improving this forever. 
+
+Thank you to Sravana for her starter code (ngram, corpus) and her great help with this project! 
 
 #### Update, 5/1/16
 State of the app: I have integrated the current version of the algorithm with a basic Flask app. 

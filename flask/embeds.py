@@ -20,5 +20,6 @@ def get_urls(raw):
         tracks = client.get('/tracks', q=query)
         if len(tracks) > 0:
             urls.append(tracks[0].permalink_url)
-
+        else:
+            print "Could not get soundcloud track for", query
     return urls

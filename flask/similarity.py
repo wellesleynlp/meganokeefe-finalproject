@@ -18,6 +18,8 @@ def getRankings(novel, lyricsDict):
     #sims[i] is the cosine similarity between the Novel and the ith song lyric
     #smaller cosine sim -> greater similarity
     maxes = sims.argsort()[-10:][::-1] #gets minima
-    tops = maxes[0][:15] #returns song indices """
-    artitles = [songs[i][1][0] for i in tops]
+    tops = maxes[0][:20] #returns song indices """
+    print "\nTOPS: ", tops
+    #need the minus-one index (the novel itself is index 0 in the scipy matrix)
+    artitles = [songs[i-1][1][0] for i in tops if songs[i-1][1] and songs[i-1][1][0]]
     return artitles

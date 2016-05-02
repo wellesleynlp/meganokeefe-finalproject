@@ -1,4 +1,4 @@
-#Full skeleton: given a single input text file, return top songs
+#Full algorithm: given a single input text file, return top songs
 #last update: 5/1/16
 
 import argparse
@@ -10,6 +10,7 @@ from os import listdir
 from os.path import isfile, join
 import rake
 import musixmatch
+import json
 import genius
 import lyric_scraper
 import operator
@@ -20,7 +21,7 @@ from embeds import *
 import ast
 from operator import itemgetter
 
-def bookbeats(inquiry):
+def bookbeats(inquiry, optparam):
     #Step 1- RAKE. returns a list of top 10 key phrases from the input text.
     def extractKeywords(text):
         rake_object = rake.Rake("SmartStoplist.txt", 4, 3, 5)
@@ -83,19 +84,31 @@ def bookbeats(inquiry):
     #         entropies.append((titleBy, ce))
     #     ranked = sorted(entropies,key=itemgetter(1))
     #     return ranked
-
     filepath = "novels/"+ inquiry + ".txt"
-    rawtext = open(filepath).read().decode('unicode_escape').encode('ascii','ignore')
-    print "RAKE....."
-    kws = extractKeywords(rawtext)
-    print "Proper nouns...."
-    pns = properNouns(rawtext)
-    fkws = kws + pns
-    noDups = list(set([i.lower() for i in fkws]))
-    print "WITHOUT DUPLICATES: ", noDups
-    print "ALL KEYWORDS/PROPER NOUNS GATHERED: ", fkws
-    print "Lyrics...."
-    lyrics = songLyrics(filepath, kws)
+    if len(optparam)==0:  #it's a built-in novel request
+        rawtext = open(filepath).read().decode('unicode_escape').encode('ascii','ignore')
+    else: #assume new text
+        rawtext = optparam.decode('unicode_escape').encode('ascii','ignore')
+    #ONLY get song lyrics if it's a new text!!
+    print "INQUIRY IS ", inquiry
+    if not os.path.exists("novels/"+inquiry):
+        print "RAKE....."
+        kws = extractKeywords(rawtext)
+        print "Proper nouns...."
+        pns = properNouns(rawtext)
+        fkws = kws[:5] + pns[:5]
+        noDups = list(set([i.lower() for i in fkws]))
+        print "WITHOUT DUPLICATES: ", noDups
+        print "ALL KEYWORDS/PROPER NOUNS GATHERED: ", fkws
+        print "API fetch of lyrics if brand-new text...."
+        lyrics = songLyrics(filepath, fkws)
+        pp.pprint(lyrics)
+    else: #can use the existing json to save time!
+        fn2 = "novels/"+inquiry+"_lyrics"+'.json'
+        print "OPENING ", fn2
+        with open(fn2) as infile:
+            lyrics = json.load(infile)
+            #print lyrics
     print "TFIDF/Cosine Similarity..."
     artitles = getRankings(rawtext, lyrics)
     return get_urls(artitles)

@@ -8,14 +8,29 @@
   <div>{{ results|safe }}</div>
 {% endif %}
 
-<p>Enter a book title:</p>
-
+<p><font size="2">(make sure that only one text area has stuff in it- will crash.)</font></p>
+<p>OPTION 1: Demo- enter a book title from the following list:</p>
+<ol>
+<li>alice (alice in wonderland)</li>
+<li>narnia (the lion/witch/wardrobe)</li>
+<li>emma (jane austen)</li>
+<li>leaves (whitman's leaves of grass)</li>
+<li>divergent</li>
+<li>timemachine (h.g. wells)</li>
+</ol>
 <form action = "/" method=post>
 <input type="text" id="word" name="word">
-<datalist id="word">
-  <option name ="Internet Explorer">
-  <option name="Firefox">
-</datalist>
-<input type="submit" value="Generate">
+<input type="submit" value="Go!">
 </form>
+</p>
+
+<p>OPTION 2: Paste in your own text (Warning: long text = long running time)
+<form action = "/" method=post>
+<textarea rows="18" cols="120" id="full" name="full"></textarea>
+<input type="submit" value="Go!">
+</form>
+</p>
+
+
+<p>(For a new text, takes ~3-4 minutes to run- don't refresh!)</p>
 {% endblock %}
