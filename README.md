@@ -1,7 +1,6 @@
 # CS349 Final Project 
 Megan O'Keefe, Spring 2016
 
-![image](bb.jpg)
 
 #### Update, 5/2/16
 The final version of Bookbeats runs on a local flask app, which you can execute if you clone the repository and run ```main.py``` inside the Flask folder. **Note:** before running, must have the following Python modules installed:
@@ -23,6 +22,13 @@ Regarding final algorithm improvements- with the addition of also extracting pro
 For *Emma* by Jane Austen: 
 
 	ALL KEYWORDS/PROPER NOUNS GATHERED:  ['fine young man', 'young man', 'brunswick square', 'william larkins', 'box hill', 'Emma', 'Harriet', 'Jane', 'Fairfax', 'Woodhouse'] 
+	
+	
+**Flask UI: Starter page**
+![image](bb2.jpg)
+
+**Flask UI: Results with embedded Soundcloud widgets**
+![image](bb.jpg)
 	
 The algorithm's shortcomings (like not accounting for genre preferences) are still present, as are the limitations I've put on myself with API queries (using two APIs in turn really slows down the whole algorithm, for example). But I'm happy with how the project has evolved. Writing the algorithm was difficult, as predicted, and there are a lot of moving pieces- I could probably work on improving this forever. 
 
